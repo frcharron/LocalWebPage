@@ -1,0 +1,23 @@
+{
+  "useLocalTime": true,
+  "fallbackTimezone": "America/Toronto",
+  "refreshIntervalSeconds": 300,
+  "timeThresholds": {
+    "morning": 6,
+    "day": 9,
+    "evening": 18,
+    "night": 21
+  },
+  "images": {
+    "morning": "iceberg_morning.jpg",
+    "day": "iceberg_day.jpg",
+    "evening": "iceberg_evening.jpg",
+    "night": "iceberg_night.jpg"
+  },
+  "backgroundColors": {
+    "morning": "#B1D7D1",
+    "day": "#A6CBE3",
+    "evening": "#F7B787",
+    "night": "#020B33"
+  }
+}
