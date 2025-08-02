@@ -9,10 +9,10 @@
     "night": 21
   },
   "images": {
-    "morning": "iceberg_morning.jpg",
-    "day": "iceberg_day.jpg",
-    "evening": "iceberg_evening.jpg",
-    "night": "iceberg_night.jpg"
+    "morning": "iceberg_morning.png",
+    "day": "iceberg_day.png",
+    "evening": "iceberg_evening.png",
+    "night": "iceberg_night.png"
   },
   "backgroundColors": {
     "morning": "#B1D7D1",
