@@ -29,6 +29,31 @@ function updateTimeDisplay(now, timezone) {
   document.getElementById("date").textContent = now.toLocaleDateString("fr-CA", dateOptions);
 }
 
+function getDominantColorFromImage(imgElement) {
+  const canvas = document.createElement('canvas');
+  canvas.width = imgElement.naturalWidth;
+  canvas.height = imgElement.naturalHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(imgElement, 0, 0);
+
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+
+  let r = 0, g = 0, b = 0, count = 0;
+  for (let i = 0; i < data.length; i += 4 * 100) {
+    r += data[i];
+    g += data[i + 1];
+    b += data[i + 2];
+    count++;
+  }
+
+  r = Math.round(r / count);
+  g = Math.round(g / count);
+  b = Math.round(b / count);
+
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
 async function updateBackground() {
   const config = await loadConfig();
   const timezone = config.useLocalTime
@@ -40,13 +65,15 @@ async function updateBackground() {
   const hour = localTime.getHours();
   const segment = getTimeSegment(hour, config.timeThresholds);
 
-  const imageFile = config.images[segment] + "?v=" + Date.now(); // force no cache
+  const imageFile = config.images[segment] + "?v=" + Date.now();
   const backgroundImage = document.getElementById("background-image");
+
+  backgroundImage.onload = () => {
+    const dominantColor = getDominantColorFromImage(backgroundImage);
+    document.body.style.backgroundColor = dominantColor;
+  };
+
   backgroundImage.src = imageFile;
-
-  const bgColor = config.backgroundColors[segment] || "#000";
-  document.body.style.backgroundColor = bgColor;
-
   updateTimeDisplay(localTime, timezone);
 
   setTimeout(updateBackground, config.refreshIntervalSeconds * 1000);
