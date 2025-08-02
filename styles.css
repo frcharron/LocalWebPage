@@ -39,6 +39,7 @@ body, html {
 }
 
 #datetime {
-    font-size: 1.2em;
+    font-size: 2.5em;  /* ← plus grand */
     text-align: left;
+    line-height: 1.2;
 }
