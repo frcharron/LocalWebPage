@@ -16,7 +16,7 @@ async function updateBackground() {
     const now = new Date();
     //const localTime = new Date(now.toLocaleString('fr-CA', { timeZone: timezone }));
     //const options = { hour: "numeric", minute: "numeric" };
-    const hour = localTime.getHours();
+    const hour = now.getHours();
     const segment = getSegmentByHour(hour, config.timeThresholds);
     const image = config.images[segment];
     const bgColor = config.backgroundColors[segment] || "#000";
