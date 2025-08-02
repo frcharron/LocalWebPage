@@ -14,7 +14,9 @@ async function updateBackground() {
     const config = await loadConfig();
     const timezone = config.useLocalTime ? Intl.DateTimeFormat().resolvedOptions().timeZone : config.fallbackTimezone || "America/Toronto";
     const now = new Date();
-    const localTime = new Date(now.toLocaleString('fr-CA', { timeZone: timezone, hour: '2-digit',
+    const localTime = new Date(now.toLocaleString('fr-CA', { 
+      timeZone: timezone, 
+      hour: '2-digit',
       minute: '2-digit',
       second: undefined }));
     const hour = now.getHours();
