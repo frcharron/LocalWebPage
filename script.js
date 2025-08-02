@@ -15,6 +15,7 @@ async function updateBackground() {
     const timezone = config.useLocalTime ? Intl.DateTimeFormat().resolvedOptions().timeZone : config.fallbackTimezone || "America/Toronto";
     const now = new Date();
     const localTime = new Date(now.toLocaleString('en-US', { timeZone: timezone }));
+    const options = { hour: "numeric", minute: "numeric" };
     const hour = localTime.getHours();
     const segment = getSegmentByHour(hour, config.timeThresholds);
     const image = config.images[segment];
@@ -24,13 +25,14 @@ async function updateBackground() {
     backgroundImage.src = image;
     document.body.style.backgroundColor = bgColor;
 
-    document.getElementById("time").textContent = localTime.toLocaleTimeString('fr-CA', {
+    /*document.getElementById("time").textContent = localTime.toLocaleTimeString('fr-CA', {
       timeZone: timezone,
       hour: '2-digit',
       minute: '2-digit',
       second: undefined
-    });
+    });*/
 
+    document.getElementById("time").textContent = new Intl.DateTimeFormat("fr-CA", options).format(localTime);
     document.getElementById("date").textContent = localTime.toLocaleDateString('fr-CA', { timeZone: timezone });
 
     setTimeout(updateBackground, config.refreshIntervalSeconds * 1000);
