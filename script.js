@@ -24,8 +24,12 @@ async function updateBackground() {
     backgroundImage.src = image;
     document.body.style.backgroundColor = bgColor;
 
-    document.getElementById("time").textContent = localTime.toLocaleTimeString('fr-CA', { timeZone: timezone });
-    document.getElementById("date").textContent = localTime.toLocaleDateString('fr-CA', { timeZone: timezone });
+    document.getElementById("time").textContent = localTime.toLocaleTimeString('fr-CA', {
+      timeZone: timezone,
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+document.getElementById("date").textContent = localTime.toLocaleDateString('fr-CA', { timeZone: timezone });
 
     setTimeout(updateBackground, config.refreshIntervalSeconds * 1000);
 }
