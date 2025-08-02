@@ -54,4 +54,5 @@ body, html {
 
 #date {
   font-size: 0.625em;
+  display: block;
 }
