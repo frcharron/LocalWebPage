@@ -27,8 +27,10 @@ async function updateBackground() {
     document.getElementById("time").textContent = localTime.toLocaleTimeString('fr-CA', {
       timeZone: timezone,
       hour: '2-digit',
-      minute: '2-digit'
+      minute: '2-digit',
+      second: undefined
     });
+
     document.getElementById("date").textContent = localTime.toLocaleDateString('fr-CA', { timeZone: timezone });
 
     setTimeout(updateBackground, config.refreshIntervalSeconds * 1000);
